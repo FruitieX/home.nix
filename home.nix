@@ -23,7 +23,7 @@
     htop
     coreutils
     less # Non busybox version of less needed by delta
-    direnv
+    ripgrep
   ];
 
   programs = {
@@ -32,5 +32,7 @@
     tmux = (import ./tmux.nix { inherit pkgs; });
     zsh = (import ./zsh.nix { inherit pkgs; });
     starship = (import ./starship.nix { inherit pkgs; });
+    dircolors = (import ./dircolors.nix { inherit pkgs; });
+    direnv = (import ./direnv.nix { inherit pkgs; });
   };
 }

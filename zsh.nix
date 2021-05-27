@@ -24,9 +24,6 @@
     if [[ -z $TMUX ]]; then
       exec tmux new-session -t 0 \; set-option destroy-unattached
     fi
-
-    # Initialize direnv hook
-    eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
   '';
 
   profileExtra = ''
