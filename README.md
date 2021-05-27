@@ -12,4 +12,8 @@ Home Manager configuration files
 
 - Install [Home Manager](https://github.com/nix-community/home-manager#installation)
 - Run `zsh` to try the config in action. Make your default shell run zsh or set zsh as default shell to automate this.
-  - For example (WSL): "Command line" in Windows Terminal profile settings: `wsl.exe -d Ubuntu -e bash -lc zsh`
+  - For example (WSL): "Command line" in Windows Terminal profile settings:
+    
+    ```
+    wsl.exe -d Ubuntu -e bash -lc zsh
+    ```
