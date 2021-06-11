@@ -20,10 +20,14 @@
   home.stateVersion = "21.05";
 
   home.packages = with pkgs; [
-    htop
     coreutils
     less # Non busybox version of less needed by delta
     ripgrep
+    jq
+    unzip
+    ncdu
+    strace
+    binutils
   ];
 
   programs = {
@@ -32,7 +36,8 @@
     tmux = (import ./tmux.nix { inherit pkgs; });
     zsh = (import ./zsh.nix { inherit pkgs; });
     starship = (import ./starship.nix { inherit pkgs; });
-    dircolors = (import ./dircolors.nix { inherit pkgs; });
     direnv = (import ./direnv.nix { inherit pkgs; });
+    exa = (import ./exa.nix { inherit pkgs; });
+    htop = (import ./htop.nix { inherit pkgs; });
   };
 }

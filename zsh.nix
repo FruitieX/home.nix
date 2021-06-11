@@ -24,6 +24,9 @@
     if [[ -z $TMUX ]]; then
       exec tmux new-session -t 0 \; set-option destroy-unattached
     fi
+
+    # 'jj' enters normal mode
+    bindkey -M viins 'jj' vi-cmd-mode
   '';
 
   profileExtra = ''
@@ -54,4 +57,20 @@
       src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
     }
   ];
+
+  oh-my-zsh = {
+    enable = true;
+    plugins = [
+      "git"
+      "npm"
+      "docker"
+      "command-not-found"
+      "ubuntu"
+      "z"
+      "history-substring-search"
+      "rust"
+      "cargo"
+      "vi-mode"
+    ];
+  };
 }
