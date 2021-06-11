@@ -49,12 +49,22 @@
 
     # Don't use nano
     EDITOR = "nvim";
+
+    # 'jj' enters normal mode
+    ZVM_VI_INSERT_ESCAPE_BINDKEY = "jj";
   };
 
   plugins = [
     {
       name = "fast-syntax-highlighting";
       src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
+    }
+    {
+      name = "zsh-vi-mode";
+      src = builtins.fetchGit {
+        url = "https://github.com/jeffreytse/zsh-vi-mode";
+        rev = "9178e6bea2c8b4f7e998e59ef755820e761610c7";
+      };
     }
   ];
 
@@ -70,7 +80,6 @@
       "history-substring-search"
       "rust"
       "cargo"
-      "vi-mode"
     ];
   };
 }
