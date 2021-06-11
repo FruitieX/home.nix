@@ -17,3 +17,6 @@ Home Manager configuration files
     ```
     wsl.exe -d Ubuntu -e bash -lc zsh
     ```
+
+NOTE: During initial launch you may get errors related to the `~/.z` directory missing.
+This will go away after you use `cd` for the first time to change to any directory.
