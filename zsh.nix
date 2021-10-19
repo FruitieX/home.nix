@@ -19,6 +19,7 @@
   initExtra = ''
     mkdir -p $HOME/.tmux
     export TMUX_TMPDIR=$HOME/.tmux
+    export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
 
     # Launch in tmux session if we're not already in one
     if [[ -z $TMUX ]]; then

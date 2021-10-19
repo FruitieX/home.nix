@@ -28,6 +28,8 @@
     ncdu
     strace
     binutils
+    tokei
+    xh
   ];
 
   programs = {
