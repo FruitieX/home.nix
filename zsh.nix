@@ -42,6 +42,8 @@
 
     # Adds cargo packages to $PATH
     export PATH="$HOME/.cargo/bin:$PATH"
+
+    export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
   '';
 
   sessionVariables = {
@@ -49,7 +51,7 @@
     DIRENV_LOG_FORMAT = "";
 
     # Don't use nano
-    EDITOR = "nvim";
+    EDITOR = "vim";
 
     # 'jj' enters normal mode
     ZVM_VI_INSERT_ESCAPE_BINDKEY = "jj";

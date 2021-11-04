@@ -3,8 +3,8 @@
 {
   enable = true;
   vimdiffAlias = true;
-  viAlias = true;
-  vimAlias = true;
+  # viAlias = true;
+  # vimAlias = true;
 
   plugins = with pkgs.vimPlugins; [
     base16-vim

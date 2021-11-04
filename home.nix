@@ -30,6 +30,8 @@
     binutils
     tokei
     xh
+    wabt
+    binaryen
   ];
 
   programs = {
