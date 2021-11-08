@@ -10,6 +10,8 @@ Home Manager configuration files
   nix-shell -p git --command "git clone https://github.com/FruitieX/home.nix.git $HOME/.config/nixpkgs"
   ```
 
+- Edit `home.nix`, change at least `home.homeDirectory` to match yours.
+
 - Install [Home Manager](https://github.com/nix-community/home-manager#installation)
 - Run `zsh` to try the config in action. Make your default shell run zsh or set zsh as default shell to automate this.
   - For example (WSL): "Command line" in Windows Terminal profile settings:
