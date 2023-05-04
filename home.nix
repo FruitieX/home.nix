@@ -32,10 +32,11 @@
     xh
     wabt
     binaryen
+    nodejs-18_x
   ];
 
   programs = {
-    neovim = (import ./neovim.nix { inherit pkgs; });
+    # neovim = (import ./neovim.nix { inherit pkgs; });
     git = (import ./git.nix { inherit pkgs; });
     tmux = (import ./tmux.nix { inherit pkgs; });
     zsh = (import ./zsh.nix { inherit pkgs; });

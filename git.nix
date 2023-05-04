@@ -6,6 +6,13 @@
   userEmail = "rasmus@lovegren.fi";
   userName = "Rasmus Lövegren";
 
+  ignores = [
+    "target"
+    ".direnv"
+    "*~"
+    "*.swp"
+  ];
+
   delta = {
     enable = true;
     options = {
@@ -45,6 +52,9 @@
   };
 
   aliases = {
+    main = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4";
+    remotesh = "remote set-head origin --auto";
+
     a = "add";
     ap = "add --patch";
 
@@ -55,18 +65,21 @@
     c = "commit --verbose";
     ca = "commit --verbose --all";
     co = "checkout";
-    com = "checkout master";
+    com = "! git checkout $(git main)";
     cf = "commit --amend --reuse-message HEAD";
     cp = "cherry-pick --ff";
 
     d = "diff";
-    dom = "diff origin/master";
+    dom = "! git diff origin/$(git main)";
 
     f = "fetch";
     cl = "clone";
     pl = "pull";
 
     ir = "reset";
+    irh = "reset --hard";
+    irs = "reset --soft";
+    irs1 = "reset --soft HEAD~1";
 
     lg = "!git log --topo-order --all --graph --pretty=format:\"%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n\"";
 
@@ -77,10 +90,10 @@
     r = "rebase";
     ra = "rebase --abort";
     rc = "rebase --continue";
-    from = "! git fetch && git rebase origin/master";
-    rom = "rebase origin/master";
+    from = "! git fetch && git rebase origin/$(git main)";
+    rom = "! git rebase origin/$(git main)";
     ri = "rebase --interactive";
-    riom = "rebase --interactive origin/master";
+    riom = "! git rebase --interactive origin/$(git main)";
     rs = "rebase --skip";
 
     s = "stash";
