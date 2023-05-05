@@ -5,18 +5,16 @@
 
   enableAutosuggestions = true;
   enableVteIntegration = true;
-  dirHashes = {
-    tm = "$HOME/tofuman";
-  };
 
   shellAliases = {
-    # da comrade
     da = "direnv allow";
-
     g = "git";
+    c = "code-insiders";
   };
 
   initExtra = ''
+    source <(carapace _carapace)
+
     mkdir -p $HOME/.tmux
     export TMUX_TMPDIR=$HOME/.tmux
     export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0

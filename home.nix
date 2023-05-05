@@ -30,9 +30,13 @@
     binutils
     tokei
     xh
-    wabt
-    binaryen
+
+    carapace
+    gitAndTools.gh
+
     nodejs-18_x
+    cargo
+    pre-commit
   ];
 
   programs = {
@@ -44,5 +48,6 @@
     direnv = (import ./direnv.nix { inherit pkgs; });
     exa = (import ./exa.nix { inherit pkgs; });
     htop = (import ./htop.nix { inherit pkgs; });
+    nushell = (import ./nushell.nix { inherit pkgs; });
   };
 }

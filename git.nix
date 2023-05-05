@@ -103,5 +103,7 @@
     sh = "show";
 
     st = "status --short";
+
+    sw = "switch";
   };
 }
