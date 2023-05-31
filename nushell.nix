@@ -27,5 +27,16 @@
         }
       }
     }
+
+    let-env config = {
+      show_banner: false,
+      edit_mode: vi
+    }
+
+    alias da = direnv allow
+    alias g = git
+    alias c = code-insiders
+
+    let-env EDITOR = nvim
   '';
 }
