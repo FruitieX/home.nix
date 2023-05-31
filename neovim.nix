@@ -3,33 +3,33 @@
 {
   enable = true;
   vimdiffAlias = true;
-  # viAlias = true;
-  # vimAlias = true;
+  viAlias = true;
+  vimAlias = true;
 
   plugins = with pkgs.vimPlugins; [
-    # base16-vim
-    # supertab
-    # vim-markdown
-    # undotree
+    base16-vim
+    supertab
+    vim-markdown
+    undotree
 
-    # vim-airline
-    # vim-airline-themes
+    vim-airline
+    vim-airline-themes
 
-    # tsuquyomi
+    tsuquyomi
 
-    # vim-gitgutter
-    # vim-surround
+    vim-gitgutter
+    vim-surround
 
-    # editorconfig-vim
+    editorconfig-vim
 
-    # ctrlp-vim
+    ctrlp-vim
 
-    # vim-easymotion
+    vim-easymotion
 
-    # incsearch-vim
+    incsearch-vim
 
-    # nerdcommenter
-    # nerdtree
+    nerdcommenter
+    nerdtree
   ];
 
   extraConfig = ''

@@ -9,7 +9,7 @@
   keyMode = "vi";
   newSession = true;
   secureSocket = true;
-  shell = "${pkgs.zsh}/bin/zsh";
+  shell = "${pkgs.nushell}/bin/nu";
   shortcut = "a";
   terminal = "screen-256color";
 

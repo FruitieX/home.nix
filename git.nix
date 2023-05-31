@@ -8,6 +8,7 @@
 
   ignores = [
     "target"
+    ".vscode"
     ".direnv"
     "*~"
     "*.swp"

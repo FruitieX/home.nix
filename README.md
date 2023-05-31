@@ -13,12 +13,11 @@ Home Manager configuration files
 - Edit `home.nix`, change at least `home.homeDirectory` to match yours.
 
 - Install [Home Manager](https://github.com/nix-community/home-manager#installation)
-- Run `zsh` to try the config in action. Make your default shell run zsh or set zsh as default shell to automate this.
+- Run `nu` to try the config in action. Make your terminal run `tmux
+  new-session -A -s main` to automatically open nushell in a tmux session.
+
   - For example (WSL): "Command line" in Windows Terminal profile settings:
     
     ```
-    wsl.exe -d Ubuntu -e bash -lc zsh
+    wsl.exe -d Ubuntu -e bash -lc "tmux new-session -A -s main"
     ```
-
-NOTE: During initial launch you may get errors related to the `~/.z` directory missing.
-This will go away after you use `cd` for the first time to change to any directory.
