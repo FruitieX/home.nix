@@ -95,5 +95,7 @@
     setw -g window-status-separator " "
     setw -g window-status-bell-style fg=red,bg=default,none
     setw -g window-status-activity-style fg=cyan,bg=default,bold
+
+    set -sg escape-time 50
   '';
 }
