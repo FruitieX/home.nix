@@ -30,6 +30,9 @@
     binutils
     tokei
     xh
+    jc
+    zoxide
+    xclip
 
     carapace
     gitAndTools.gh
