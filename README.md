@@ -7,7 +7,7 @@ Home Manager configuration files
 - Clone this repo to `~/.config/home-manager` by running:
 
   ```
-  nix-shell -p git --command "git clone https://github.com/FruitieX/home.nix.git $HOME/.config/home-manager"
+  nix-shell -p git --command "git clone https://github.com/orriborri/home.nix.git $HOME/.config/home-manager"
   ```
 
 - Edit `home.nix`, change at least `home.homeDirectory` to match yours.
