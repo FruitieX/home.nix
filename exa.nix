@@ -1,6 +1,0 @@
-{ ... }:
-
-{
-  enable = true;
-  enableAliases = true;
-}

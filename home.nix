@@ -33,11 +33,13 @@
     jc
     zoxide
     xclip
-
+    eza
     carapace
     gitAndTools.gh
 
     nodejs-18_x
+    nodePackages.pnpm
+
     cargo
     pre-commit
   ];
@@ -49,7 +51,6 @@
     zsh = (import ./zsh.nix { inherit pkgs; });
     starship = (import ./starship.nix { inherit pkgs; });
     direnv = (import ./direnv.nix { inherit pkgs; });
-    exa = (import ./exa.nix { inherit pkgs; });
     htop = (import ./htop.nix { inherit pkgs; });
     nushell = (import ./nushell.nix { inherit pkgs; });
   };
