@@ -3,8 +3,8 @@
 {
   enable = true;
 
-  userEmail = "rasmus@lovegren.fi";
-  userName = "Rasmus Lövegren";
+  userEmail = "oscar.henriksson91@gmail.com";
+  userName = "Oscar Henriksson";
 
   ignores = [
     "target"
