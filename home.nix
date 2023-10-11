@@ -38,7 +38,6 @@
     gitAndTools.gh
 
     nodejs-18_x
-    nodePackages.pnpm
 
     cargo
     pre-commit

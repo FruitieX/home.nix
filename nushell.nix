@@ -20,7 +20,7 @@
       hooks: {
         pre_prompt: [{ ||
           let direnv = (direnv export json | from json)
-          let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+          let direnv = if ($direnv | is-empty) { {} } else { $direnv }
           $direnv | load-env
         }]
       },
@@ -31,6 +31,7 @@
           completer: $carapace_completer
         }
       }
+      
     }
 
     alias da = direnv allow
@@ -38,5 +39,7 @@
     alias c = code-insiders
 
     $env.EDITOR = nvim
+    $env.PATH = ($env.PATH | split row (char esep) | append '/home/orre/.npm-packages/bin')
+
   '';
 }
