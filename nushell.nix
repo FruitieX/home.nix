@@ -38,6 +38,7 @@
     alias g = git
     alias c = code-insiders
 
+    $env.GPG_TTY = (tty)
     $env.EDITOR = nvim
     $env.PATH = ($env.PATH | split row (char esep) | append '/home/orre/.npm-packages/bin')
 

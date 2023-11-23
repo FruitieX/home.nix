@@ -24,6 +24,7 @@
   extraConfig = {
     push = {
       default = "simple";
+      autoSetupRemote = true;
     };
 
     core = {
