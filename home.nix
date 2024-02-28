@@ -31,13 +31,12 @@
     tokei
     xh
     jc
-    zoxide
     xclip
+    bottom
 
-    carapace
     gitAndTools.gh
 
-    nodejs-18_x
+    nodejs
     nodePackages.pnpm
     cargo
     pre-commit
@@ -53,5 +52,9 @@
     eza = (import ./eza.nix { inherit pkgs; });
     htop = (import ./htop.nix { inherit pkgs; });
     nushell = (import ./nushell.nix { inherit pkgs; });
+    zoxide = (import ./zoxide.nix { inherit pkgs; });
+    carapace = (import ./carapace.nix { inherit pkgs; });
+    atuin = (import ./atuin.nix { inherit pkgs; });
+    gitui = (import ./gitui.nix { inherit pkgs; });
   };
 }
