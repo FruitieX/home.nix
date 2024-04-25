@@ -3,26 +3,18 @@
 {
   enable = true;
 
-  enableAutosuggestions = true;
+  autosuggestion.enable = true;
   enableVteIntegration = true;
 
   shellAliases = {
     da = "direnv allow";
     g = "git";
-    c = "code-insiders";
+    c = "code";
   };
 
   initExtra = ''
-    source <(carapace _carapace)
-
-    mkdir -p $HOME/.tmux
-    export TMUX_TMPDIR=$HOME/.tmux
-    export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
-
-    # Launch in tmux session if we're not already in one
-    if [[ -z $TMUX ]]; then
-      exec tmux new-session -t 0 \; set-option destroy-unattached
-    fi
+    # Fancy ls colors
+    export LS_COLORS="$(${pkgs.vivid}/bin/vivid generate nord)"
 
     # 'jj' enters normal mode
     bindkey -M viins 'jj' vi-cmd-mode
@@ -41,7 +33,7 @@
     # Adds cargo packages to $PATH
     export PATH="$HOME/.cargo/bin:$PATH"
 
-    export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
+    # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
   '';
 
   sessionVariables = {
@@ -68,19 +60,4 @@
       };
     }
   ];
-
-  oh-my-zsh = {
-    enable = true;
-    plugins = [
-      "git"
-      "npm"
-      "docker"
-      "command-not-found"
-      "ubuntu"
-      "z"
-      "history-substring-search"
-      "rust"
-      "cargo"
-    ];
-  };
 }

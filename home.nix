@@ -20,25 +20,39 @@
   home.stateVersion = "21.05";
 
   home.packages = with pkgs; [
-    coreutils
+    (uutils-coreutils.override { prefix = ""; })
     less # Non busybox version of less needed by delta
+
     ripgrep
+    igrep
+
+    fd
+    skim
+
     jq
     unzip
     ncdu
     strace
-    binutils
+    # binutils
     tokei
     xh
     jc
-    zoxide
     xclip
-    eza
-    carapace
+
+    bottom
+    jless
+    navi
+    tealdeer
+    fend
+
+    zellij
+
+    dust
+    dua
+
     gitAndTools.gh
-
-    nodejs-18_x
-
+    nodejs_21
+    nodePackages.pnpm
     cargo
     pre-commit
   ];
@@ -50,7 +64,13 @@
     zsh = (import ./zsh.nix { inherit pkgs; });
     starship = (import ./starship.nix { inherit pkgs; });
     direnv = (import ./direnv.nix { inherit pkgs; });
+
+    lsd = (import ./lsd.nix { inherit pkgs; });
     htop = (import ./htop.nix { inherit pkgs; });
     nushell = (import ./nushell.nix { inherit pkgs; });
+    zoxide = (import ./zoxide.nix { inherit pkgs; });
+    carapace = (import ./carapace.nix { inherit pkgs; });
+    atuin = (import ./atuin.nix { inherit pkgs; });
+    gitui = (import ./gitui.nix { inherit pkgs; });
   };
 }
