@@ -51,7 +51,7 @@
 
     gitAndTools.gh
 
-    nodejs_21
+    nodejs_22
     nodePackages.pnpm
     cargo
     pre-commit
