@@ -10,7 +10,10 @@
 
     alias da = direnv allow
     alias g = git
-    alias gui = gitui
+    # Define a custom command for `gui`
+    def gui [] {
+      bash -c 'eval $(ssh-agent) && ssh-add ~/.ssh/id_rsa && gitui && eval $(ssh-agent -k)'
+    }
     alias c = code
 
     # Maybe these won't be needed one day
