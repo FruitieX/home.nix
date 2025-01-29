@@ -22,7 +22,7 @@
   '';
 
   extraEnv = ''
-    $env.EDITOR = nvim
+    $env.EDITOR = "nvim"
     $env.LS_COLORS = (${pkgs.vivid}/bin/vivid generate nord | str trim)
     $env.CARGO_HOME = ($env.HOME | path join .cargo)
     $env.PATH = (
