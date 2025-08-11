@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -7,7 +7,7 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "rasse";
-  home.homeDirectory = "/home/rasse";
+  home.homeDirectory = (if pkgs.stdenv.isDarwin then "/Users/rasse" else "/home/rasse");
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -17,7 +17,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "21.05";
+  home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
     (uutils-coreutils.override { prefix = ""; })
@@ -32,7 +32,7 @@
     jq
     unzip
     ncdu
-    strace
+    # strace
     # binutils
     tokei
     xh
@@ -43,6 +43,7 @@
     navi
     tealdeer
     fend
+    bandwhich
 
     zellij
 
@@ -51,10 +52,14 @@
 
     gitAndTools.gh
 
-    nodejs_22
+    nodejs_latest
     nodePackages.pnpm
     cargo
     pre-commit
+
+    # Needed by Nix LSP
+    nil
+    nixd
   ];
 
   programs = {
@@ -66,10 +71,12 @@
     direnv = (import ./direnv.nix { inherit pkgs; });
     lsd = (import ./lsd.nix { inherit pkgs; });
     htop = (import ./htop.nix { inherit pkgs; });
+    btop = (import ./btop.nix { inherit pkgs; });
     nushell = (import ./nushell.nix { inherit pkgs; });
     zoxide = (import ./zoxide.nix { inherit pkgs; });
     carapace = (import ./carapace.nix { inherit pkgs; });
     atuin = (import ./atuin.nix { inherit pkgs; });
     gitui = (import ./gitui.nix { inherit pkgs; });
+    wezterm = (import ./wezterm.nix { inherit pkgs; });
   };
 }

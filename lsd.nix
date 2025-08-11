@@ -2,5 +2,4 @@
 
 {
   enable = true;
-  enableAliases = true;
 }
