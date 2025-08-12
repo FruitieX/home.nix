@@ -19,53 +19,63 @@
   # changes in each release.
   home.stateVersion = "25.05";
 
-  home.packages = with pkgs; [
-    (uutils-coreutils.override { prefix = ""; })
-    less # Non busybox version of less needed by delta
+  home.packages =
+    with pkgs;
+    [
+      (uutils-coreutils.override { prefix = ""; })
+      less # Non busybox version of less needed by delta
 
-    ripgrep
-    igrep
+      # Utilities
+      fd
+      skim
 
-    fd
-    skim
+      unzip
+      ncdu
+      jc
+      xclip
+      bottom
+      jless
+      navi
+      tealdeer
+      fend
+      bandwhich
 
-    jq
-    unzip
-    ncdu
-    # strace
-    # binutils
-    tokei
-    xh
-    jc
-    xclip
-    bottom
-    jless
-    navi
-    tealdeer
-    fend
-    bandwhich
+      ripgrep
+      igrep
 
-    zellij
+      dust
+      dua
 
-    dust
-    dua
+      # Git
+      gitAndTools.gh
+      pre-commit
 
-    gitAndTools.gh
+      # Programming
+      nodejs_latest
+      nodePackages.pnpm
+      cargo
+      tokei
+      jq
+      xh
 
-    nodejs_latest
-    nodePackages.pnpm
-    cargo
-    pre-commit
-
-    # Needed by Nix LSP
-    nil
-    nixd
-  ];
+      # Needed by Nix LSP
+      nil
+      nixd
+    ]
+    # Linux only
+    ++ (
+      if pkgs.stdenv.isLinux then
+        [
+          strace
+          binutils
+        ]
+      else
+        [ ]
+    );
 
   programs = {
     neovim = (import ./neovim.nix { inherit pkgs; });
     git = (import ./git.nix { inherit pkgs; });
-    tmux = (import ./tmux.nix { inherit pkgs; });
     zsh = (import ./zsh.nix { inherit pkgs; });
     starship = (import ./starship.nix { inherit pkgs; });
     direnv = (import ./direnv.nix { inherit pkgs; });
@@ -78,5 +88,6 @@
     atuin = (import ./atuin.nix { inherit pkgs; });
     gitui = (import ./gitui.nix { inherit pkgs; });
     wezterm = (import ./wezterm.nix { inherit pkgs; });
+    zellij = (import ./zellij.nix { inherit pkgs; });
   };
 }

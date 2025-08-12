@@ -11,7 +11,7 @@
     config.color_scheme = 'Ayu Dark (Gogh)'
 
     config.font = wezterm.font 'FiraCode Nerd Font'
-    config.default_prog = { '${if pkgs.stdenv.isDarwin then "/Users/rasse" else "/home/rasse"}/.nix-profile/bin/tmux', 'new-session', '-A', '-s', 'main' }
+    config.default_prog = { '${if pkgs.stdenv.isDarwin then "/Users/rasse" else "/home/rasse"}/.nix-profile/bin/zellij', 'attach', '-c', 'main' }
 
     return config
   '';

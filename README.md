@@ -13,11 +13,13 @@ Home Manager configuration files
 - Edit `home.nix`, change at least `home.homeDirectory` to match yours.
 
 - Install [Home Manager](https://github.com/nix-community/home-manager#installation)
-- Run `nu` to try the config in action. Make your terminal run `tmux
-  new-session -A -s main` to automatically open nushell in a tmux session.
+- Run `zsh` to try the config in action. Make your terminal run `zellij
+  attach -c main` to automatically open zsh in a zellij session.
 
   - For example (WSL): "Command line" in Windows Terminal profile settings:
     
     ```
-    wsl.exe -d Ubuntu -e bash -lc "tmux new-session -A -s main"
+    wsl.exe -d Ubuntu -e bash -lc "zellij attach -c main"
     ```
+  
+  - On macOS you can run `wezterm` 
