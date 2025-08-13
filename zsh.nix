@@ -10,6 +10,10 @@
     da = "direnv allow";
     g = "git";
     c = "code";
+    ssh = "ssh.exe";
+    ssh-add = "ssh-add.exe";
+    scp = "scp.exe";
+    zed = "DISPLAY=:0 zed";
   };
 
   initContent = pkgs.lib.mkOrder 1 ''
