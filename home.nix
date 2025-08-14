@@ -53,7 +53,7 @@
       # Programming
       nodejs_latest
       nodePackages.pnpm
-      cargo
+      #cargo
       tokei
       jq
       xh

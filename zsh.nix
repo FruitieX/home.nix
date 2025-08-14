@@ -12,9 +12,10 @@
     c = "code";
   };
 
-  initContent = ''
-    # Fancy ls colors
-    export LS_COLORS='$(${pkgs.vivid}/bin/vivid generate catppuccin-mocha'
+  initContent = pkgs.lib.mkOrder 1 ''
+    # Launch zellij if stdout/stdin/stderr are connected to a terminal
+    export ZELLIJ_AUTO_EXIT=true
+    [[ -t 0 ]] && [[ -t 1 ]] && [[ -t 2 ]] && eval "$(${pkgs.zellij}/bin/zellij setup --generate-auto-start zsh)"
 
     # 'jj' enters normal mode
     bindkey -M viins 'jj' vi-cmd-mode
@@ -31,12 +32,19 @@
     export PATH="$HOME/.local/bin:$PATH"
 
     # Adds cargo packages to $PATH
-    export PATH="$HOME/.cargo/bin:$PATH"
+    . "$HOME/.cargo/env"
 
-    # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
-
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  '';
+  ''
+  + (
+    if pkgs.stdenv.isDarwin then
+      ''
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+      ''
+    else
+      ''
+        # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
+      ''
+  );
 
   sessionVariables = {
     # Suppress direnv logs
