@@ -39,6 +39,8 @@
       tealdeer
       fend
       bandwhich
+      gnused
+      gawk
 
       ripgrep
       igrep
