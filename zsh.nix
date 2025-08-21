@@ -14,8 +14,12 @@
 
   initContent = pkgs.lib.mkOrder 1 ''
     # Launch zellij if stdout/stdin/stderr are connected to a terminal
-    export ZELLIJ_AUTO_EXIT=true
-    [[ -t 0 ]] && [[ -t 1 ]] && [[ -t 2 ]] && eval "$(${pkgs.zellij}/bin/zellij setup --generate-auto-start zsh)"
+    if [[ -z "$ZELLIJ" ]] && [[ -t 0 ]] && [[ -t 1 ]] && [[ -t 2 ]]; then
+      # Use current directory name as session name
+      local session_name=''${1:-''${PWD:t}}
+      zellij attach -c "$session_name"
+      exit
+    fi
 
     # 'jj' enters normal mode
     bindkey -M viins 'jj' vi-cmd-mode
