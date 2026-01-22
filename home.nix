@@ -49,12 +49,11 @@
       dua
 
       # Git
-      gitAndTools.gh
+      gh
       pre-commit
 
       # Programming
       nodejs_latest
-      nodePackages.pnpm
       #cargo
       tokei
       jq
@@ -78,6 +77,13 @@
   programs = {
     neovim = (import ./neovim.nix { inherit pkgs; });
     git = (import ./git.nix { inherit pkgs; });
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        line-numbers = true;
+      };
+    };
     zsh = (import ./zsh.nix { inherit pkgs; });
     starship = (import ./starship.nix { inherit pkgs; });
     direnv = (import ./direnv.nix { inherit pkgs; });

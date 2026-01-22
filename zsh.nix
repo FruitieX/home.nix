@@ -17,12 +17,15 @@
     if [[ -z "$ZELLIJ" ]] && [[ -t 0 ]] && [[ -t 1 ]] && [[ -t 2 ]]; then
       # Use current directory name as session name
       local session_name=''${1:-''${PWD:t}}
-      zellij attach -c "$session_name"
-      exit
+      zellij attach -c "$session_name" && exit
     fi
 
     # 'jj' enters normal mode
     bindkey -M viins 'jj' vi-cmd-mode
+
+    if [ -f ~/.aliases ]; then
+      . ~/.aliases
+    fi
   '';
 
   profileExtra = ''
@@ -38,6 +41,8 @@
     # Adds cargo packages to $PATH
     . "$HOME/.cargo/env"
 
+    # Adds opencode to $PATH
+    export PATH="$HOME/.opencode/bin:$PATH"
   ''
   + (
     if pkgs.stdenv.isDarwin then

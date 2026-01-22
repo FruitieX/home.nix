@@ -3,25 +3,21 @@
 {
   enable = true;
 
-  userEmail = "rasmus@lovegren.fi";
-  userName = "Rasmus Lövegren";
-
   ignores = [
     "target"
     ".vscode"
     ".direnv"
+    ".envrc"
     "*~"
     "*.swp"
   ];
 
-  delta = {
-    enable = true;
-    options = {
-      line-numbers = true;
+  settings = {
+    user = {
+      email = "rasmus@lovegren.fi";
+      name = "Rasmus Lövegren";
     };
-  };
 
-  extraConfig = {
     push = {
       default = "simple";
     };
@@ -50,9 +46,8 @@
     init = {
       defaultBranch = "main";
     };
-  };
 
-  aliases = {
+    alias = {
     main = "!git symbolic-ref refs/remotes/origin/HEAD | cut -d'/' -f4";
     remotesh = "remote set-head origin --auto";
 
@@ -106,5 +101,6 @@
     st = "status --short";
 
     sw = "switch";
+    };
   };
 }
