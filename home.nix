@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -6,8 +6,8 @@
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "rasse";
-  home.homeDirectory = (if pkgs.stdenv.isDarwin then "/Users/rasse" else "/home/rasse");
+  home.username = lib.mkDefault "rasse";
+  home.homeDirectory = lib.mkDefault (if pkgs.stdenv.isDarwin then "/Users/rasse" else "/home/rasse");
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

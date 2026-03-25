@@ -5,6 +5,11 @@
 
   autosuggestion.enable = true;
   enableVteIntegration = true;
+  completionInit = "autoload -U compinit && compinit -u";
+
+  envExtra = ''
+    skip_global_compinit=1
+  '';
 
   shellAliases = {
     da = "direnv allow";
