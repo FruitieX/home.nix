@@ -7,7 +7,7 @@
     local config = wezterm.config_builder()
 
     config.enable_tab_bar = false
-    config.color_scheme = 'Ayu Dark (Gogh)'
+    config.color_scheme = 'Catppuccin Mocha'
 
     config.font = wezterm.font 'FiraCode Nerd Font'
     config.default_prog = { '${homeDirectory}/.nix-profile/bin/zsh', '-l' }

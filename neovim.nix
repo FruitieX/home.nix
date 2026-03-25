@@ -7,12 +7,36 @@
   vimAlias = true;
 
   plugins = with pkgs.vimPlugins; [
-    base16-vim
+    {
+      plugin = catppuccin-nvim;
+      type = "lua";
+      config = ''
+        require("catppuccin").setup({ flavour = "mocha" })
+        vim.cmd.colorscheme "catppuccin"
+      '';
+    }
     vim-markdown
     vim-gitgutter
     vim-surround
     editorconfig-vim
-    ctrlp-vim
+
+    plenary-nvim
+    {
+      plugin = telescope-nvim;
+      type = "lua";
+      config = ''
+        local builtin = require('telescope.builtin')
+        vim.keymap.set('n', '<C-p>', builtin.find_files)
+        vim.keymap.set('n', '<leader>fg', builtin.live_grep)
+        vim.keymap.set('n', '<leader>fb', builtin.buffers)
+      '';
+    }
+
+    (nvim-treesitter.withPlugins (p: [
+      p.bash p.json p.lua p.nix p.python
+      p.rust p.toml p.typescript p.tsx p.yaml
+      p.javascript p.html p.css p.markdown
+    ]))
   ];
   extraConfig = ''
     " Sync clipboard with X11

@@ -51,6 +51,11 @@
       bandwhich
       gnused
       gawk
+      sd
+      yazi
+      hyperfine
+      difftastic
+      nix-output-monitor
 
       ripgrep
       igrep
@@ -87,6 +92,7 @@
   programs = {
     neovim = (import ./neovim.nix { inherit pkgs; });
     git = (import ./git.nix { inherit pkgs; });
+    bat = (import ./bat.nix { inherit pkgs; });
     delta = {
       enable = true;
       enableGitIntegration = true;
@@ -94,6 +100,7 @@
         line-numbers = true;
       };
     };
+    fzf = (import ./fzf.nix { inherit pkgs; });
     zsh = (import ./zsh.nix { inherit pkgs; });
     starship = (import ./starship.nix { inherit pkgs; });
     direnv = (import ./direnv.nix { inherit pkgs; });
