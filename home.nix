@@ -22,7 +22,15 @@
   home.packages =
     with pkgs;
     [
-      (uutils-coreutils.override { prefix = ""; })
+      (symlinkJoin {
+        name = "uutils-coreutils-unprefixed";
+        paths = [ uutils-coreutils ];
+        postBuild = ''
+          for f in $out/bin/uu-*; do
+            ln -sf "$f" "$out/bin/''${f##*/uu-}"
+          done
+        '';
+      })
       less # Non busybox version of less needed by delta
 
       # Utilities
