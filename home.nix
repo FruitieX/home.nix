@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -7,7 +7,9 @@
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = lib.mkDefault "rasse";
-  home.homeDirectory = lib.mkDefault (if pkgs.stdenv.isDarwin then "/Users/rasse" else "/home/rasse");
+  home.homeDirectory = lib.mkDefault (
+    if pkgs.stdenv.isDarwin then "/Users/${config.home.username}" else "/home/${config.home.username}"
+  );
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -103,7 +105,7 @@
     carapace = (import ./carapace.nix { inherit pkgs; });
     atuin = (import ./atuin.nix { inherit pkgs; });
     gitui = (import ./gitui.nix { inherit pkgs; });
-    wezterm = (import ./wezterm.nix { inherit pkgs; });
+    wezterm = (import ./wezterm.nix { inherit pkgs; homeDirectory = config.home.homeDirectory; });
     zellij = (import ./zellij.nix { inherit pkgs; });
   };
 }

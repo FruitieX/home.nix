@@ -12,20 +12,31 @@
   outputs =
     { nixpkgs, home-manager, ... }:
     let
+      currentUser =
+        let
+          u = builtins.getEnv "USER";
+        in
+        if u != "" then u else "rasse";
+
       mkHome =
         {
           system,
-          username ? "rasse",
+          username ? currentUser,
           homeDirectory ? null,
         }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
           modules = [
             ./home.nix
-          ] ++ nixpkgs.lib.optionals (username != "rasse" || homeDirectory != null) [
             {
               home.username = username;
-              home.homeDirectory = homeDirectory;
+              home.homeDirectory =
+                if homeDirectory != null then
+                  homeDirectory
+                else if nixpkgs.legacyPackages.${system}.stdenv.isDarwin then
+                  "/Users/${username}"
+                else
+                  "/home/${username}";
             }
           ];
         };
@@ -33,19 +44,19 @@
     {
       homeConfigurations = {
         # Bare metal macOS (arm64)
-        "rasse@darwin" = mkHome { system = "aarch64-darwin"; };
+        "darwin" = mkHome { system = "aarch64-darwin"; };
 
         # Bare metal Linux
-        "rasse@linux" = mkHome { system = "x86_64-linux"; };
-        "rasse@linux-arm" = mkHome { system = "aarch64-linux"; };
+        "linux" = mkHome { system = "x86_64-linux"; };
+        "linux-arm" = mkHome { system = "aarch64-linux"; };
 
         # Devcontainers (user is "vscode")
-        "vscode@devcontainer" = mkHome {
+        "devcontainer" = mkHome {
           system = "aarch64-linux";
           username = "vscode";
           homeDirectory = "/home/vscode";
         };
-        "vscode@devcontainer-x86" = mkHome {
+        "devcontainer-x86" = mkHome {
           system = "x86_64-linux";
           username = "vscode";
           homeDirectory = "/home/vscode";

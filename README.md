@@ -1,25 +1,39 @@
 # home.nix
+
 Home Manager configuration files
 
 ## Installation
 
-- Install the [Nix package manager](https://nixos.org/download.html#nix-quick-install)
-- Clone this repo to `~/.config/home-manager` by running:
+Clone this repo to `~/.config/home-manager` and run `install.sh`:
+
+```sh
+git clone https://github.com/FruitieX/home.nix.git $HOME/.config/home-manager
+~/.config/home-manager/install.sh
+```
+
+The install script will:
+
+1. Install Nix if not already present
+2. Detect your platform and username automatically
+3. Install and activate the Home Manager configuration
+
+To apply changes after editing config files, run `./install.sh` again.
+
+## Usage
+
+Run `zsh` to try the config in action. Make your terminal run `zellij
+attach -c main` to automatically open zsh in a zellij session.
+
+- For example (WSL): "Command line" in Windows Terminal profile settings:
 
   ```
-  nix-shell -p git --command "git clone https://github.com/FruitieX/home.nix.git $HOME/.config/home-manager"
+  wsl.exe -d Ubuntu -e bash -lc "zellij attach -c main"
   ```
 
-- Edit `home.nix`, change at least `home.homeDirectory` to match yours.
+- On macOS you can run `wezterm`
 
-- Install [Home Manager](https://github.com/nix-community/home-manager#installation)
-- Run `zsh` to try the config in action. Make your terminal run `zellij
-  attach -c main` to automatically open zsh in a zellij session.
+- In VSCode dev containers, set in your user settings.json:
 
-  - For example (WSL): "Command line" in Windows Terminal profile settings:
-    
-    ```
-    wsl.exe -d Ubuntu -e bash -lc "zellij attach -c main"
-    ```
-  
-  - On macOS you can run `wezterm` 
+  ```
+  "dotfiles.repository": "FruitieX/home.nix"
+  ```

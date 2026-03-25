@@ -11,9 +11,14 @@ if ! command -v nix &>/dev/null; then
     if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
     fi
-    # Enable flakes
+fi
+
+# Ensure flakes are enabled
+if ! nix flake --help &>/dev/null; then
+    echo "Enabling flakes..."
     mkdir -p ~/.config/nix
-    echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+    grep -q 'experimental-features.*flakes' ~/.config/nix/nix.conf 2>/dev/null || \
+        echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 fi
 
 # Determine system architecture
@@ -21,18 +26,18 @@ ARCH="$(uname -m)"
 OS="$(uname -s)"
 
 if [[ "$OS" == "Darwin" ]]; then
-    CONFIG_NAME="rasse@darwin"
+    CONFIG_NAME="darwin"
 elif [[ "$(whoami)" == "vscode" ]] || [[ -n "${REMOTE_CONTAINERS:-}" ]] || [[ -n "${CODESPACES:-}" ]]; then
     if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-        CONFIG_NAME="vscode@devcontainer"
+        CONFIG_NAME="devcontainer"
     else
-        CONFIG_NAME="vscode@devcontainer-x86"
+        CONFIG_NAME="devcontainer-x86"
     fi
 else
     if [[ "$ARCH" == "aarch64" || "$ARCH" == "arm64" ]]; then
-        CONFIG_NAME="rasse@linux-arm"
+        CONFIG_NAME="linux-arm"
     else
-        CONFIG_NAME="rasse@linux"
+        CONFIG_NAME="linux"
     fi
 fi
 
@@ -49,7 +54,7 @@ for pkg in direnv; do
     fi
 done
 
-nix run home-manager/master -- switch --flake "${SCRIPT_DIR}#${CONFIG_NAME}" -b backup
+nix run home-manager/master -- switch --impure --flake "${SCRIPT_DIR}#${CONFIG_NAME}" -b backup
 
 # Set zsh as default shell if available and not already active
 ZSH_PATH="$(which zsh 2>/dev/null || true)"
