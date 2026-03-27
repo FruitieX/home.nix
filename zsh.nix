@@ -66,6 +66,7 @@
 
     # Don't use nano
     EDITOR = "vim";
+    GIT_EDITOR = "vim";
 
     # 'jj' enters normal mode
     ZVM_VI_INSERT_ESCAPE_BINDKEY = "jj";
