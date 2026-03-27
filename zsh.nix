@@ -9,22 +9,30 @@
 
   envExtra = ''
     skip_global_compinit=1
-  '';
+
+    # Custom binaries and package manager paths
+    export PATH="$HOME/.local/bin:$HOME/.npm-packages/bin:$HOME/.yarn/bin:$HOME/.opencode/bin:$PATH"
+
+    # Allow running project-local node binaries without npx
+    export PATH="./node_modules/.bin:$PATH"
+
+    # Rust toolchain
+    . "$HOME/.cargo/env"
+  ''
+  + (if pkgs.stdenv.isDarwin then ''
+    # Homebrew (macOS only)
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  '' else "");
 
   shellAliases = {
     da = "direnv allow";
     g = "git";
     c = "code";
+    zj = "zellij attach -c \"\${PWD:t}\"";
+    hms = "~/.config/home-manager/install.sh";
   };
 
   initContent = pkgs.lib.mkOrder 1 ''
-    # Launch zellij if stdout/stdin/stderr are connected to a terminal
-    # if [[ -z "$ZELLIJ" ]] && [[ -t 0 ]] && [[ -t 1 ]] && [[ -t 2 ]]; then
-    #   # Use current directory name as session name
-    #   local session_name=''${1:-''${PWD:t}}
-    #   zellij attach -c "$session_name" && exit
-    # fi
-
     # 'jj' enters normal mode
     bindkey -M viins 'jj' vi-cmd-mode
 
@@ -32,33 +40,6 @@
       . ~/.aliases
     fi
   '';
-
-  profileExtra = ''
-    # Adds global npm & yarn packages to $PATH
-    export PATH="$HOME/.npm-packages/bin:$HOME/.yarn/bin:$PATH";
-
-    # Adds local npm & yarn packages to $PATH
-    export PATH="./node_modules/.bin:$PATH"
-
-    # Adds pip packages to $PATH
-    export PATH="$HOME/.local/bin:$PATH"
-
-    # Adds cargo packages to $PATH
-    . "$HOME/.cargo/env"
-
-    # Adds opencode to $PATH
-    export PATH="$HOME/.opencode/bin:$PATH"
-  ''
-  + (
-    if pkgs.stdenv.isDarwin then
-      ''
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-      ''
-    else
-      ''
-        # export DISPLAY=$(grep -m 1 nameserver /etc/resolv.conf | awk '{print $2}'):0
-      ''
-  );
 
   sessionVariables = {
     # Suppress direnv logs
