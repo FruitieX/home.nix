@@ -35,5 +35,6 @@ attach -c main` to automatically open zsh in a zellij session.
 - In VSCode dev containers, set in your user settings.json:
 
   ```
-  "dotfiles.repository": "FruitieX/home.nix"
+  "dotfiles.repository": "FruitieX/home.nix",
+  "terminal.integrated.defaultProfile.linux": "zsh",
   ```
