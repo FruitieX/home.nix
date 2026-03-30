@@ -9,5 +9,6 @@
     theme = "catppuccin-mocha";
     default_shell = "${pkgs.zsh}/bin/zsh";
     show_startup_tips = false;
+    show_release_notes = false;
   };
 }
