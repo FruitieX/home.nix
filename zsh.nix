@@ -8,6 +8,11 @@
   completionInit = "autoload -U compinit && compinit -u";
 
   envExtra = ''
+    # Source Nix environment (the installer only added this to bashrc, not zshenv)
+    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+      . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
+
     skip_global_compinit=1
 
     # Custom binaries and package manager paths
@@ -17,7 +22,9 @@
     export PATH="./node_modules/.bin:$PATH"
 
     # Rust toolchain
-    . "$HOME/.cargo/env"
+    if [ -r "$HOME/.cargo/env" ]; then
+      . "$HOME/.cargo/env"
+    fi
   ''
   + (if pkgs.stdenv.isDarwin then ''
     # Homebrew (macOS only)

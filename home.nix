@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, hl, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -54,6 +54,7 @@
       hyperfine
       difftastic
       nix-output-monitor
+      hl.packages.${pkgs.stdenv.hostPlatform.system}.bin
 
       ripgrep
       igrep
@@ -71,6 +72,7 @@
       tokei
       jq
       xh
+      lima
 
       # Needed by Nix LSP
       nil
