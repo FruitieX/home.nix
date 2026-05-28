@@ -22,6 +22,18 @@
         in
         if u != "" then u else "rasse";
 
+      currentSystem =
+        if builtins ? currentSystem then
+          builtins.currentSystem
+        else
+          "x86_64-linux";
+
+      supportedSystems = [
+        "aarch64-darwin"
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
+
       mkHome =
         {
           system,
@@ -45,8 +57,16 @@
             }
           ];
         };
+
+      mkCurrentUserHome = system: {
+        ${currentUser} = mkHome { inherit system; };
+      };
     in
     {
+      legacyPackages = nixpkgs.lib.genAttrs supportedSystems (system: {
+        homeConfigurations = mkCurrentUserHome system;
+      });
+
       homeConfigurations = {
         # Bare metal macOS (arm64)
         "darwin" = mkHome { system = "aarch64-darwin"; };
@@ -66,6 +86,6 @@
           username = "vscode";
           homeDirectory = "/home/vscode";
         };
-      };
+      } // mkCurrentUserHome currentSystem;
     };
 }
