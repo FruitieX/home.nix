@@ -68,6 +68,7 @@
 
       # Programming
       nodejs_latest
+      nodePackages.pnpm
       #cargo
       tokei
       jq
