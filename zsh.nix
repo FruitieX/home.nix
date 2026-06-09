@@ -22,6 +22,9 @@
     export PATH="./node_modules/.bin:$PATH"
 
     export PNPM_HOME="$HOME/.local/share/pnpm"
+    export NPM_CONFIG_PREFIX="$HOME/.npm-packages"
+
+    export LITTLE_CODER_PERMISSION_MODE=accept-all
 
     # Rust toolchain
     if [ -r "$HOME/.cargo/env" ]; then
