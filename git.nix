@@ -35,6 +35,10 @@
       rebase = true;
     };
 
+    branch = {
+      autoSetupMerge = simple;
+    };
+
     diff = {
       compactionHeuristic = true;
     };

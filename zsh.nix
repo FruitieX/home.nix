@@ -62,7 +62,7 @@ EOF
     skip_global_compinit=1
 
     # Custom binaries and package manager paths
-    export PATH="$HOME/.local/bin:$HOME/.local/share/pnpm:$HOME/.npm-packages/bin:$HOME/.yarn/bin:$HOME/.opencode/bin:$PATH"
+    export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/.local/share/pnpm:$HOME/.npm-packages/bin:$HOME/.yarn/bin:$HOME/.opencode/bin:$PATH"
 
     # Allow running project-local node binaries without npx
     export PATH="./node_modules/.bin:$PATH"

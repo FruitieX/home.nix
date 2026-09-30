@@ -73,6 +73,7 @@
       # Programming
       nodejs_latest
       nodePackages.pnpm
+      opencode
       #cargo
       tokei
       jq
