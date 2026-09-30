@@ -3,6 +3,7 @@
 {
   imports = [
     ./moon.nix
+    ./herdr.nix
   ];
 
   # Let Home Manager install and manage itself.

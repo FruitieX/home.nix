@@ -19,6 +19,19 @@ The install script will:
 
 To apply changes after editing config files, run `./install.sh` again.
 
+## Herdr
+
+Herdr is installed through Home Manager from its upstream flake, pinned to
+stable release `v0.9.3` rather than the older Nixpkgs package. To upgrade, change
+the `herdr.url` release tag in `flake.nix`, then run:
+
+```sh
+nix flake update herdr
+home-manager switch --flake .#rasse
+```
+
+Launch it with `herdr`. Nix manages updates; use Home Manager to upgrade it.
+
 ## Usage
 
 Run `zsh` to try the config in action. Make your terminal run `zellij

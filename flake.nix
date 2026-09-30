@@ -3,6 +3,9 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    herdr = {
+      url = "github:herdrdev/herdr/v0.9.3";
+    };
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -14,7 +17,7 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, hl, ... }:
+    { nixpkgs, home-manager, hl, herdr, ... }:
     let
       currentUser =
         let
@@ -42,7 +45,7 @@
         }:
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${system};
-          extraSpecialArgs = { inherit hl; };
+          extraSpecialArgs = { inherit hl herdr; };
           modules = [
             ./home.nix
             {
